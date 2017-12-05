@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,App } from 'ionic-angular';
 import { My_tripPage } from '../my_trip/my_trip';
 
 @Component({
@@ -7,10 +7,12 @@ import { My_tripPage } from '../my_trip/my_trip';
   templateUrl: 'changepassword.html'
 })
 export class ChangepasswordPage {
-
-  constructor(public navCtrl: NavController) {
+public data = {};
+  constructor(public navCtrl: NavController,
+              ) {
 
   }
+
   openmytripPage(){
 	  this.navCtrl.push(My_tripPage)
   }

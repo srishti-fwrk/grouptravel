@@ -10,28 +10,66 @@
 			<h1>Logo Here</h1>
 			<p class="page_head">Create Account</p>
 		</div>
+           
 		<div class="form_sec">
-			<form>
+			  <form #signupForm="ngForm" novalidate >
 				<ion-list>
 					<ion-item>
 						<ion-label fixed><ion-icon ios="ios-person-outline" md="md-person"></ion-icon></ion-label>
-						<ion-input type="text" value="" placeholder="Full Name"></ion-input>
+						<ion-input type="text" placeholder="Full Name" [(ngModel)]="data.name" name="name" #name='ngModel' required ></ion-input>
 					</ion-item>
+                                         <ion-label  class="alert alert-danger" color="danger">
+                                           <div *ngIf="name.errors && (name.dirty || name.touched)">
+                                           <div [hidden]="!name.errors.required" >
+                                             Field is required
+                                           </div>
+                                           </div>
+                                       </ion-label>
+                                       
 					<ion-item>
 						<ion-label fixed><ion-icon ios="ios-mail-outline" md="md-mail"></ion-icon></ion-label>
-						<ion-input type="text" value="" placeholder="Email"></ion-input>
+						<ion-input type="email" placeholder="Email" [(ngModel)]="data.email" name="email" #email='ngModel'  pattern='^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$' required></ion-input>
 					</ion-item>
+                                                  <ion-label  class="alert alert-danger" color="danger">
+                                                    <div *ngIf="email.errors && (email.dirty || email.touched)" >
+                                                      <div [hidden]="!email.errors.required" >
+                                                        Email is required
+                                                       </div>
+                                                       <div [hidden]="!email.errors.pattern" >
+                                                        Invalid email
+                                                       </div>
+                                                    </div>
+                                                   </ion-label>
 					<ion-item>
 						<ion-label fixed> <ion-icon ios="ios-key-outline" md="md-key"></ion-icon></ion-label>
-						<ion-input type="password" placeholder="Password"></ion-input>
+						<ion-input type="password" placeholder="Password"  minlength="6" [(ngModel)]="data.password" name="password" #password='ngModel' required></ion-input>
 					</ion-item>
+                                              <ion-label class="alert alert-danger" color="danger">
+                                              <div *ngIf="password.errors && (password.dirty || password.touched)">
+                                              <div [hidden]="!password.errors.required" >
+                                               Password is required
+                                              </div>
+                                          </div>
+                                           <div *ngIf="password.errors && (password.dirty || password.touched)" >
+                                             <div [hidden]="!password.errors.minlength" >
+                                                Minimum length 6 character 
+                                              </div>
+                                          </div>
+                                         </ion-label>
 					<ion-item>
 						<ion-label fixed><ion-icon ios="ios-lock-outline" md="md-lock"></ion-icon></ion-label>
-						<ion-input type="password" placeholder="Confirm Password"></ion-input>
+						<ion-input type="password" placeholder="Confirm Password"  minlength="6" [(ngModel)]="data.cpassword" name="cpassword" #cpassword='ngModel' required></ion-input>
 					</ion-item>
+                                      <ion-label class="alert alert-danger" color="danger">
+                                        <div *ngIf="cpassword.errors && (cpassword.dirty || cpassword.touched)" >
+                                             <div [hidden]="!cpassword.errors.required" >
+                                               Confirm password is required
+                                              </div>
+                                          </div>
+                                          </ion-label>
 				</ion-list>
 				<div class="btn_sec">
-					<button ion-button color="theme" (click)="opensigninPage()" round>Sign Up</button>
+					<button ion-button color="theme" (click)="register(signupForm)" [disabled]="!signupForm.form.valid"   round>Sign Up</button>
 				</div>
 			</form>
 		</div>

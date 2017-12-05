@@ -10,15 +10,25 @@
 			<h1>Logo Here</h1>
 		</div>
 		<div class="form_sec">
-			<form>
+			<form #forgotForm="ngForm" (ngSubmit)="forgot(forgotForm)" novalidate>
 				<ion-list>
 					<ion-item>
 						<ion-label fixed><ion-icon ios="ios-mail-outline" md="md-mail"></ion-icon></ion-label>
-						<ion-input type="email" value="" placeholder="Enter Your Email"></ion-input>
+						<ion-input type="email" [(ngModel)]="data.email" name="email" #email='ngModel' pattern='^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$' value="" placeholder="Enter Your Email" required></ion-input>
 					</ion-item>
+                                <ion-label class="alert alert-danger" color="danger">
+                                              <div *ngIf="email.errors && (email.dirty || email.touched)" >
+                                              <div [hidden]="!email.errors.required" >
+                                               Email is required
+                                              </div>
+                                              <div [hidden]="!email.errors.pattern" >
+                                               Invalid Email
+                                              </div>
+                                              </div>
+                                </ion-label>   
 				</ion-list>
 				<div class="btn_sec">
-					<button ion-button color="theme" round (click)="openresetpassword()">Submit</button>
+					<button ion-button color="theme" type="submit" [disabled]="!forgotForm.form.valid" round >Submit</button>
 				</div>
 			</form>
 		</div>

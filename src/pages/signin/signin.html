@@ -10,19 +10,37 @@
 			<h1>Logo Here</h1>
 		</div>
 		<div class="form_sec">
-			<form>
+			<form #loginForm="ngForm" (ngSubmit)="login(loginForm)"  novalidate>
+      
 				<ion-list>
 					<ion-item>
 						<ion-label fixed><ion-icon ios="ios-person-outline" md="md-person"></ion-icon></ion-label>
-						<ion-input type="text" value="" placeholder="Email"></ion-input>
+						<ion-input type="email" value="" placeholder="Email" [(ngModel)]="data.email" name="email"  #email='ngModel' pattern='^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$' required></ion-input>
 					</ion-item>
+                                    <ion-label class="alert alert-danger" color="danger">
+                                         <div *ngIf="email.errors && (email.dirty || email.touched)" >
+                                         <div [hidden]="!email.errors.required" >
+                                          Email is required
+                                         </div>
+                                         <div [hidden]="!email.errors.pattern" >
+                                          Invalid email
+                                         </div>
+                                         </div>
+                                    </ion-label>
 					<ion-item>
 						<ion-label fixed><ion-icon ios="ios-lock-outline" md="md-lock"></ion-icon></ion-label>
-						<ion-input type="password" placeholder="Password"></ion-input>
+						<ion-input type="password" placeholder="Password" [(ngModel)]="data.password" name="password" #password='ngModel' required></ion-input>
 					</ion-item>
+                                     <ion-label class="alert alert-danger" color="danger">
+                                            <div *ngIf="password.errors && (password.dirty || password.touched)">
+                                               <div [hidden]="!password.errors.required" >
+                                                 Password is required
+                                                </div>
+                                            </div>
+                                     </ion-label>
 				</ion-list>
 				<div class="btn_sec">
-					<button ion-button color="theme" round>Sign In</button>
+					<button ion-button color="theme" type="submit"  [disabled]="!loginForm.form.valid"  round>Sign In</button>
 				</div>
 			</form>
 		</div>
@@ -32,6 +50,7 @@
 		</div>
 		<div class="forgot">
 			<button ion-button clear (click)="openforgotPage()">Forgot Password?</button>
+                        <button ion-button clear (click)="ChangepasswordPage()">Change Password?</button>
 		</div>
 	</div>
 </ion-content>
