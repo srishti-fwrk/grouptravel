@@ -1,0 +1,26 @@
+<ion-header hidden>
+  <ion-navbar color="theme">
+    <ion-title class="header_title" color="text">Get Started</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<div class="page_wrapper">
+		<div class="logo_sec">
+			<h1>Logo Here</h1>
+		</div>
+		<div class="form_sec">
+			<form>
+				<ion-list>
+					<ion-item>
+						<ion-label fixed><ion-icon ios="ios-mail-outline" md="md-mail"></ion-icon></ion-label>
+						<ion-input type="email" value="" placeholder="Enter Your Email"></ion-input>
+					</ion-item>
+				</ion-list>
+				<div class="btn_sec">
+					<button ion-button color="theme" round (click)="openresetpassword()">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</ion-content>

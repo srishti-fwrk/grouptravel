@@ -1,0 +1,37 @@
+<ion-header hidden>
+  <ion-navbar color="theme">
+    <ion-title class="header_title" color="text">Get Started</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<div class="page_wrapper">
+		<div class="logo_sec">
+			<h1>Logo Here</h1>
+		</div>
+		<div class="form_sec">
+			<form>
+				<ion-list>
+					<ion-item>
+						<ion-label fixed><ion-icon ios="ios-person-outline" md="md-person"></ion-icon></ion-label>
+						<ion-input type="text" value="" placeholder="Email"></ion-input>
+					</ion-item>
+					<ion-item>
+						<ion-label fixed><ion-icon ios="ios-lock-outline" md="md-lock"></ion-icon></ion-label>
+						<ion-input type="password" placeholder="Password"></ion-input>
+					</ion-item>
+				</ion-list>
+				<div class="btn_sec">
+					<button ion-button color="theme" round>Sign In</button>
+				</div>
+			</form>
+		</div>
+		<div class="social_sec">
+			<button ion-button class="fb-btn" block><ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon> Log in with facebook</button>
+			<button ion-button class="gm-btn" block><ion-icon ios="logo-googleplus" md="logo-googleplus"></ion-icon> Log in with Gmail</button>
+		</div>
+		<div class="forgot">
+			<button ion-button clear (click)="openforgotPage()">Forgot Password?</button>
+		</div>
+	</div>
+</ion-content>
